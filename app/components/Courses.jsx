@@ -5,7 +5,7 @@ const Courses = ({ courses }) => {
 
     return (
         <div className='courses'>
-            {courses.length > 0 ? courses.map((course) => (
+            {courses.map((course) => (
                 <div key={course.id} className='card'>
                     <h2>{course.title}</h2>
                     <small>Level: {course.level}</small>
@@ -14,7 +14,7 @@ const Courses = ({ courses }) => {
                         Go To Course
                     </Link>
                 </div>
-            )) : <h2> No Courses found</h2>}
+            ))}
         </div>
     );
 };
