@@ -1,13 +1,13 @@
 import React from 'react'
 
-const loading = () => {
+const LoadingPage = () => {
   return (
     <div className='loader'>
         <div className="spinner">
-            
+
         </div>
     </div>
   )
 }
 
-export default loading
+export default LoadingPage

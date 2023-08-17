@@ -1,16 +1,11 @@
 import Link from 'next/link';
 
-async function getCourses() {
-    const res = await fetch('http://localhost:3000/api/courses');
-    return await res.json()
-}
 
-const Courses = async () => {
+const Courses = ({ courses }) => {
 
-    const courses = await getCourses()
     return (
         <div className='courses'>
-            {courses.map((course) => (
+            {courses.length > 0 ? courses.map((course) => (
                 <div key={course.id} className='card'>
                     <h2>{course.title}</h2>
                     <small>Level: {course.level}</small>
@@ -19,7 +14,7 @@ const Courses = async () => {
                         Go To Course
                     </Link>
                 </div>
-            ))}
+            )) : <h2> No Courses found</h2>}
         </div>
     );
 };

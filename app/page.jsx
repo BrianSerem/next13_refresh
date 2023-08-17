@@ -1,11 +1,35 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import Courses from './components/Course'
+'use client'
+import Courses from './components/Courses'
+import CourseSearch from './components/CourseSearch'
+import { useState, useEffect } from 'react'
+import LoadingPage from './loading'
+
+
 
 export default function HomePage() {
+  const [courses, setCourses] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+
+    const fetchCourses = async () => {
+      const res = await fetch('/api/courses')
+      const data = await res.json()
+      console.log(data)
+      setCourses(data)
+      setIsLoading(false)
+    }
+
+    fetchCourses()
+  }, [])
+  if (isLoading) {
+    return <LoadingPage />
+  }
   return (
     <>
-     <Courses />
+      <h1> Welcome to Traversy Courses</h1>
+      <CourseSearch getSearchResults={(results) => setCourses(results)} />
+      <Courses courses={courses} />
     </>
   )
 }
